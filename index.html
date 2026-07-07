@@ -598,6 +598,7 @@
 <script>
 // ── STATE ──────────────────────────────────────────────────────────────────
   const SHEET_URL_UTENTI = 'https://docs.google.com/spreadsheets/d/1VAWSD-GbE2A4U13kZdyDdDOAluo_3UAsFy-1a92mUkI/edit?usp=sharing';
+  let _sending = false;
   const state = {
   utenti: JSON.parse(localStorage.getItem('rv_utenti') || '[]'),
   locali: JSON.parse(localStorage.getItem('rv_locali') || '[]'),
