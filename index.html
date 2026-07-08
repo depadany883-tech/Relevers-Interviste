@@ -337,23 +337,24 @@ function sendToSheet(record) {
     params.append('data', JSON.stringify(payload)); 
 
     // 2. La fetch definitiva
-    
-    fetch(url, { method: 'POST', body: params })
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === 'success') {
-          setSyncStatus('ok');
-          resolve(true);
-        } else {
-          setSyncStatus('err');
-          resolve(false);
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        setSyncStatus('err');
-        resolve(false);
-      });
+
+
+
+    const formData = new FormData();
+    // Aggiungiamo i dati come coppie chiave-valore
+    formData.append('data', JSON.stringify(payload));
+
+    fetch('https://script.google.com/macros/s/TUA_CHIAVE/exec', {
+        method: 'POST',
+        // NON mettere header
+        // NON mettere mode
+        body: formData 
+    })
+    .then(r => r.text())
+    .then(d => console.log("Risposta:", d))
+    .catch(e => console.error("Errore:", e));
+
+  
   });
 }
 
