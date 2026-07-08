@@ -326,66 +326,7 @@ function setSyncStatus(s) {
   el.textContent = labels[s] || s;
 }
 
-
-
-async function sendToSheet(dati) {
-
-    API_URL = dati.tipo === 'Locale' ? SHEET_URL_LOCALI : SHEET_URL_UTENTI;
-
-    console.log("Invio dati:", dati);
-
-    try {
-
-        const params = new URLSearchParams();
-
-        params.append(
-            "data",
-            JSON.stringify(dati)
-        );
-
-
-        const response = await fetch(API_URL, {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            },
-
-            body: params.toString()
-        });
-
-
-        console.log("Status HTTP:", response.status);
-
-
-        const text = await response.text();
-
-        console.log("Risposta server:", text);
-
-
-        if (!response.ok) {
-            throw new Error(
-                "Errore HTTP " + response.status
-            );
-        }
-
-
-        return JSON.parse(text);
-
-
-    } catch(error) {
-
-        console.error(
-            "Errore chiamata API:",
-            error
-        );
-
-        throw error;
-    }
-}
-
-
-function sendToSheetOld(record) {
+function sendToSheet(record) {
   return new Promise((resolve) => {
     setSyncStatus('syncing');
     const url = record.tipo === 'Locale' ? SHEET_URL_LOCALI : SHEET_URL_UTENTI;
@@ -396,7 +337,6 @@ function sendToSheetOld(record) {
     params.append('data', JSON.stringify(payload)); 
 
     // 2. La fetch definitiva
-    
     fetch(url, {
       method: "POST",
       body: "data=" + encodeURIComponent(JSON.stringify(payload))
