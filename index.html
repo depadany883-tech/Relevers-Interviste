@@ -334,6 +334,7 @@ function sendToSheet(record) {
     fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      mode: 'cors',
       body: JSON.stringify(payload)
     })
     .then(r => r.json())
