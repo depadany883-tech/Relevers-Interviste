@@ -338,9 +338,8 @@ function sendToSheet(record) {
 
     // 2. La fetch definitiva
     fetch(url, {
-      method: 'POST',
-
-      body: params
+      method: "POST",
+      body: "data=" + encodeURIComponent(JSON.stringify(payload))
     })
     .then(r => r.json())
     .then(res => {
