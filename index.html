@@ -117,7 +117,7 @@
 
   <div class="two-col">
     <div class="field"><label>Nome (opzionale)</label><input type="text" id="u-nome" placeholder="es. Marco"></div>
-    <div class="field"><label>Età</label><input type="number" id="u-età" placeholder="es. 26" min="16" max="80"></div>
+    <div class="field"><label>Età</label><input type="number" id="u-eta" placeholder="es. 26" min="16" max="80"></div>
   </div>
   <div class="field"><label>Contatto beta (email / tel)</label><input type="text" id="u-contatto" placeholder="vuole partecipare ai test?"></div>
 
@@ -434,7 +434,7 @@ async function saveUtente() {
     tipo: 'Utente', id: Date.now(), data: new Date().toLocaleDateString('it'),
     fonte: state.fonte,
     nome: document.getElementById('u-nome').value || '—',
-    età: document.getElementById('u-età').value || '—',
+    età: document.getElementById('u-eta').value || '—',
     contatto: document.getElementById('u-contatto').value || '',
     q1: q1||'', q2: state.picks['u-q2']!==undefined?state.picks['u-q2']:'',
     q3: q3||'', q4: state.picks['u-q4']!==undefined?state.picks['u-q4']:'',
